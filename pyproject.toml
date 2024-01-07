@@ -24,6 +24,9 @@ cloudinary = "^1.37.0"
 alembic = "^1.13.1"
 
 
+[tool.poetry.group.dev.dependencies]
+sphinx = "^7.2.6"
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
