@@ -20,7 +20,7 @@ REST API main
 
 
 REST API repository Contacts
-=========================
+=============================
 .. automodule:: src.repository.notes
   :members:
   :undoc-members:
@@ -28,7 +28,7 @@ REST API repository Contacts
 
 
 REST API repository Users
-=========================
+===========================
 .. automodule:: src.repository.users
   :members:
   :undoc-members:
@@ -36,7 +36,7 @@ REST API repository Users
 
 
 REST API routes Contacts
-=========================
+==========================
 .. automodule:: src.routes.notes
   :members:
   :undoc-members:
@@ -76,7 +76,7 @@ REST API service Email
 
 
 Indices and tables
-==================
+=====================
 
 * :ref:`genindex`
 * :ref:`modindex`
