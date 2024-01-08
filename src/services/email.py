@@ -1,3 +1,6 @@
+"""
+service for sending emails
+"""
 from pathlib import Path
 
 from fastapi_mail import FastMail, MessageSchema, ConnectionConfig, MessageType
@@ -22,7 +25,18 @@ conf = ConnectionConfig(
 )
 
 
-async def send_email(email: EmailStr, username: str, host: str):
+async def send_email(email: EmailStr, username: str, host: str) -> None:
+    """
+    Sends an email to the user.
+
+    :param email: Email address of the user
+    :type email: EmailStr
+    :param username: Username of the user
+    :type username: str
+    :param host: Host of the email server
+    :type host: str
+    :return: None
+    """
     try:
         token_verification = auth_service.create_email_token({"sub": email})
         message = MessageSchema(

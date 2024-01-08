@@ -1,3 +1,8 @@
+"""
+In the main.py file, the FastAPI application is initialized, including the routes, middleware, and dependencies.
+The uvicorn library is used to run the application.
+"""
+
 import uvicorn
 import redis.asyncio as redis
 from fastapi import FastAPI
@@ -26,14 +31,22 @@ app.add_middleware(
 
 
 @app.on_event("startup")
-async def startup():
+async def startup() -> None:
+    """
+    Initializes the redis connection for fastapi-limiter.
+    :return: None
+    """
     r = await redis.Redis(host=settings.redis_host, port=settings.redis_port, db=0,
                           encoding="utf-8", decode_responses=True)
     await FastAPILimiter.init(r)
 
 
 @app.get("/")
-def read_root():
+def read_root() -> dict:
+    """
+    Returns the root of the API. It is the entry point for the application.
+    :return: dict
+    """
     return {"message": "This is API for contacts"}
 
 

@@ -1,3 +1,8 @@
+"""
+Routes for the users.
+"""
+from typing import Type
+
 from fastapi import APIRouter, Depends, status, UploadFile, File
 from sqlalchemy.orm import Session
 import cloudinary
@@ -14,13 +19,33 @@ router = APIRouter(prefix="/users", tags=["users"])
 
 
 @router.get("/me/", response_model=UserDb)
-async def read_users_me(current_user: User = Depends(auth_service.get_current_user)):
+async def read_users_me(current_user: User = Depends(auth_service.get_current_user)) -> User:
+    """
+    Get the current authenticated user.
+
+    :param current_user: The current authenticated user.
+    :type current_user: User
+    :return: The current authenticated user.
+    :rtype: UserDb
+    """
     return current_user
 
 
 @router.patch('/avatar', response_model=UserDb)
 async def update_avatar_user(file: UploadFile = File(), current_user: User = Depends(auth_service.get_current_user),
-                             db: Session = Depends(get_db)):
+                             db: Session = Depends(get_db)) -> Type[User]:
+    """
+    Update the avatar of the current authenticated user.
+
+    :param file: The avatar to update.
+    :type file: UploadFile
+    :param current_user: The current authenticated user.
+    :type current_user: User
+    :param db: The database session.
+    :type db: Session
+    :return: User with updated user.
+    :rtype: UserDb
+    """
     cloudinary.config(
         cloud_name=settings.cloudinary_name,
         api_key=settings.cloudinary_api_key,
